@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>smart kitchen desighn</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="brand">
+        <h2 id="title">smart kitchen <i class="fa-solid fa-bars-staggered"></i></h2>
+    </div>
+<div style="display: flex; flex-direction: row-reverse; gap: 5px; " class="search-box">
+            <input type="search" name="search" id="search" placeholder="Search">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <button class="ai-button" type="button" aria-label="AI assistant" title="AI assistant">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>AI</span>
+        </button>
+        </div>
+
+        
+    <div class="topbar-actions">
+        
+
+        <button class="icon-button" type="button" aria-label="Notifications">
+            <i class="fa-regular fa-bell"></i>
+        </button>
+
+        <div id="donaut" aria-label="Profile image"></div>
+    </div>
+
+
+
+
+
+
+
+</header>
+
+<div id="bn">
+    <nav class="sidebar">
+        <div class="sidebar-section-title">workspace</div>
+
+        <ul class="sidebar-menu">
+            <li id="dashboard" >
+                <a href="index.html">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li id="design"   >
+                <a href="Design.html">
+                    <i class="fa-solid fa-pen-ruler"></i>
+                    <span>Design</span>
+                </a>
+            </li>
+            <li id="products"    >
+                <a href="our_products.html">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <span>Our Products</span>
+                </a>
+            </li>
+            <li id="materials"   >
+                <a href="materials.html">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Materials</span>
+                </a>
+            </li>
+            <li id="calculator">
+                <a href="#">
+                    <i class="fa-solid fa-calculator"></i>
+                    <span>Cost Calculator</span>
+                </a>
+            </li>
+            <li id="profile" >
+                <a href="#">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="sidebar-bottom">
+            <a id="settings" href="#">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+            <a id="logout" href="#" class="logout">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </nav>
+
+    <main>
+       
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctxBar = document.getElementById('miniBarChart').getContext('2d');
+
+  new Chart(ctxBar, {
+    type: 'bar',
+    data: {
+      labels: ['Wood Panels', 'material panels', 'tools', 'Craft Hand','worktop'],
+      datasets: [{
+        data: [26, 14, 2 , 16, 18,4.5],
+        backgroundColor: 'rgb(71 71 255)',
+        hoverBackgroundColor: '#4f46e5',
+        borderRadius: 8, // حواف دائرية ناعمة للأعمدة
+        borderSkipped: false
+
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { enabled: true }
+      },
+      scales: {
+        x: { 
+          grid: { display: false },
+          ticks: {
+            font: { size: 12 },
+            color: '#9ca3af'
+          }
+        },
+        y: { display: false } // إخفاء المحور الرأسي لمنع التزاحم
+      }
+    }
+  });
+</script>
+<script src="resistlogic.js"></script>
+
+<script src="activate_of_slider.js"></script>
+
+</body>
+</html>

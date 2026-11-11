@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>smart kitchen Dashboard</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="brand">
+        <h2 id="title">smart kitchen <i class="fa-solid fa-bars-staggered"></i></h2>
+    </div>
+<div style="display: flex; flex-direction: row-reverse; gap: 5px; " class="search-box">
+            <input type="search" name="search" id="search" placeholder="Search">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <button class="ai-button" type="button" aria-label="AI assistant" title="AI assistant">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>AI</span>
+        </button>
+        </div>
+
+        
+    <div class="topbar-actions">
+        
+
+        <button class="icon-button" type="button" aria-label="Notifications">
+            <i class="fa-regular fa-bell"></i>
+        </button>
+
+        <div id="donaut" aria-label="Profile image"></div>
+    </div>
+
+
+
+
+
+
+
+</header>
+
+<div id="bn">
+    <nav class="sidebar">
+        <div class="sidebar-section-title">workspace</div>
+
+        <ul class="sidebar-menu">
+            <li id="dashboard" >
+                <a href="index.html">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li id="design"   >
+                <a href="Design.html">
+                    <i class="fa-solid fa-pen-ruler"></i>
+                    <span>Design</span>
+                </a>
+            </li>
+            <li id="products"    >
+                <a href="our_products.html">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <span>Our Products</span>
+                </a>
+            </li>
+            <li id="materials"   >
+                <a href="materials.html">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Materials</span>
+                </a>
+            </li>
+            <li id="calculator">
+                <a href="#">
+                    <i class="fa-solid fa-calculator"></i>
+                    <span>Cost Calculator</span>
+                </a>
+            </li>
+            <li id="profile" >
+                <a href="#">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="sidebar-bottom">
+            <a id="settings" href="#">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+            <a id="logout" href="#" class="logout">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="page-heading">
+            <div>
+                <p class="eyebrow">Overview</p>
+                <h1>Kitchen Analysis</h1>
+            </div>
+            <button class="new-project" type="button">
+                <i class="fa-solid fa-plus"></i>
+                New Project
+            </button>
+        </div>
+
+        <section id="analayse" aria-label="Kitchen overview cards">
+            <!-- Chart card: kept as a chart canvas, only the visual container is improved. -->
+            <div class="dashboard-card chart-card" id="div1">
+                <div class="card-heading">
+                    <div>
+                        <p class="card-kicker">Materials</p>
+                        <h2>Kitchen Materials</h2>
+                    </div>
+    
+                    <span style="background-color: #2f2fa6; " class="small-icon"><i style="color: white;" class="fa-solid fa-chart-column"></i></span>
+                </div>
+
+                <div class="mini-chart-wrap">
+                    <canvas id="miniBarChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Total cost -->
+            <div class="dashboard-card stat-card" id="cost-card">
+                <div class="stat-icon"><i class="fa-solid fa-wallet"></i></div>
+                <p class="card-kicker">Budget</p>
+                <h2>Total Cost</h2>
+                <h1>77,000 <span>L.E</span></h1>
+                <hr>
+                <div class="card-info">
+                    <span>Total Items</span>
+                    <strong>42</strong>
+                </div>
+            </div>
+
+            <!-- Expected profit -->
+            <div class="dashboard-card stat-card profit-card" id="profit-card">
+                <div class="stat-icon"><i class="fa-solid fa-coins"></i></div>
+                <p class="card-kicker">Projection</p>
+                <h2>Expected Profit</h2>
+                <h1>15,400 <span>L.E</span></h1>
+                <hr>
+                <div class="card-info inline-info">
+                    <span>Profit Margin</span>
+                    <strong>20%</strong>
+                </div>
+            </div>
+        </section>
+
+        <section id="table">
+            <div class="table-container">
+                <div class="table-header">
+                    <div>
+                        <p class="eyebrow">Project breakdown</p>
+                        <h2>Materials and Cost</h2>
+                    </div>
+                    <button class="table-action" type="button">
+                        <i class="fa-solid fa-download"></i>
+                        Export
+                    </button>
+                </div>
+
+                <div class="table-scroll">
+                    <table class="cost-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Type</th>
+                                <th>Count</th>
+                                <th>Cost</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="bold"><i class="fa-solid fa-tree table-icon"></i> Wood Panels</td>
+                                <td>
+                                    <select  name="wood" id="woodht">
+                                                 
+
+
+
+
+                                    </select>
+                                </td>
+                                <td>26</td>
+                                <td>2,400 L.E</td>
+                                <td class="total-cell">70,000 L.E</td>
+                            </tr>
+                            <tr>
+                                <td class="bold"><i class="fa-solid fa-layer-group table-icon"></i> Material Panels</td>
+                                <td>  
+                                    <select onchange="adw()"  name="materials" id="matht">
+                                                 
+
+
+
+
+                                    </select>
+                                    <!-- <div onmouseleave="or.style.animationName = 'slideu'" id="or">
+                                        <span style="background-color:#ff0202a8 ;" id="goodwood" onclick="fd(this,document.getElementById('woody'),document.getElementById('mdf'))">goodwood</span>
+                                        <span style="background-color:#35cf35 ;" id="woody" onclick="fd(this,document.getElementById('goodwood'),document.getElementById('mdf'))">woody</span>
+                                        <span style="background-color:#ff0202a8 ;" id="mdf" onclick="fd(this,document.getElementById('woody'),document.getElementById('goodwood'))" >mdf</span>
+                                    </div> -->
+                                    
+                                        <!-- القائمة المنسدلة المحدثة -->
+<!-- حاوية العنصر بالجدول تضمن ضبط التموضع بدقة -->
+<div style="display: none;"  class="dropdown-wrapper">
+  <!-- الكلمة أو الزر المفعّل للقائمة (Dropdown Trigger) -->
+  <span  class="dropdown-trigger">
+   <div  class="selected-item" title="8462-sf"></div>
+  <!-- القائمة المنبثقة بالأبعاد المحددة 200px * 200px -->
+  <div class="material-dropdown-menu" id="colorsDropdown">
+    
+    <!-- الصفحة الأولى: Woody colours -->
+    <div class="section-page">
+      <h4 class="section-title">Woody colours</h4>
+      <div class="swatch-grid">
+        <div onclick="select(this)" class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl woody/4012-sf.jpg');" title="4012-sf"></div>
+        <div onclick="select(this)" class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl woody/8182-sf.jpg');" title="8182-sf"></div>
+        <div onclick="select(this)" class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl woody/8226-sf.jpg');" title="226-sf"></div>
+        <div onclick="select(this)" class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl woody/8240-sf.jpg');" title="8240-sf"></div>
+        <div onclick="select(this)" class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl woody/8244-sf.jpg');" title="8244-sf"></div>
+        <div onclick="select(this)" class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl woody/8462-sf.jpg');" title="8462-sf"></div>
+        <div onclick="select(this)" class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl woody/8477-sf.jpg');" title="8477-sf"></div>
+        <div onclick="select(this)" class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl woody/8430-sf.jpg');" title="8430-sf"></div>
+      </div>
+    </div>
+
+    <!-- الصفحة الثانية: Matt Euro Touch -->
+    <div class="section-page">
+      <h4 class="section-title">Matt colours</h4>
+      <div class="swatch-grid">
+        <div onclick="select(this)" class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl mt/5004-mf.jpg');" title="5004-mf"></div>
+        <div onclick="select(this)" class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl mt/105-sf.jpg');" title="105-sf"></div>
+        <div onclick="select(this)" class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl mt/4001-sf.jpg');" title="4001-sf"></div>
+        <div onclick="select(this)" class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl mt/5009-sf.jpg');" title="5009-sf"></div>
+        <div onclick="select(this)" class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl mt/5015-sf.jpg');" title="5015-sf"></div>
+        <div onclick="select(this)" class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl mt/5054-sf.jpg');" title="5054-sf"></div>
+        <div onclick="select(this)" class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl mt/5082-sf.jpg');" title="5082-sf"></div>
+        <div onclick="select(this)" class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl mt/5082-sf.jpg');" title="5082-sf"></div>
+      </div>
+    </div>
+
+    <!-- نقاط التحكم بالتنقل السفلية -->
+    <div class="pagination-container">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+<div>
+<h2 id="title1"></h2>
+</div>
+
+<div>
+<h2 id="title1"></h2>
+
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                </td>
+                                <td>14</td>
+                                <td>1,500 L.E</td>
+                                <td class="total-cell">6,000 L.E</td>
+                            </tr>
+                            <tr>
+                                <td class="bold"><i class="fa-solid fa-screwdriver-wrench table-icon"></i> mfsalat</td>
+                                <td>blum</td>
+                                <td>30</td>
+                                <td>120 L.E</td>
+                                <td class="total-cell">3,900 L.E</td>
+                            </tr>
+                            <tr>
+                                <td class="bold"><i class="fa-solid fa-hammer table-icon"></i> Craft Hand</td>
+                                <td>Collect + Install Kitchen</td>
+                                <td>16 meters</td>
+                                <td>500 L.E / m</td>
+                                <td class="total-cell">8,000 L.E</td>
+                            </tr>
+                            <tr>
+                                <td class="bold"><i class="fa-solid fa-table-columns table-icon"></i> Worktop</td>
+                                <td>Galaxy</td>
+                                <td>3.5 M</td>
+                                <td>4,000 L.E</td>
+                                <td class="total-cell">13,500 L.E</td>
+                            </tr>
+
+                            <tr>
+                                <td class="bold"><i class="fa-solid fa-table-columns table-icon"></i> maabed</td>
+                                <td>alminium(built-in)</td>
+                                <td>3.5 M</td>
+                                <td>4,000 L.E</td>
+                                <td class="total-cell">13,500 L.E</td>
+                            </tr>
+                            <tr>
+                                <td class="bold"><i class="fa-solid fa-table-columns table-icon"></i> ketaa dreesing</td>
+                                <td>alminium</td>
+                                <td>3.5 M</td>
+                                <td>4,000 L.E</td>
+                                <td class="total-cell">13,500 L.E</td>
+                            </tr>
+                           <tr>
+                                <td class="bold"><i class="fa-solid fa-table-columns table-icon"></i> acs</td>
+                                <td>shbk+2bambo</td>
+                                <td>3</td>
+                                <td>900 L.E + 800 L.E</td>
+                                <td class="total-cell">1,500 L.E</td>
+                            </tr>    
+                            <tr>
+                                <td class="bold"><i class="fa-solid fa-table-columns table-icon"></i> WZRA</td>
+                                <td>alminium</td>
+                                <td>3.5 M</td>
+                                <td>4,000 L.E</td>
+                                <td class="total-cell">13,500 L.E</td>
+                            </tr>                       
+                          
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+ let matht = document.querySelector('#matht')
+let or = document.getElementById('or')
+// or.nextElementSibling.appendChild.onclick = function(){
+
+
+
+
+
+// }
+
+
+let wood = [{
+id : 'w_kingelshrouk1',
+name : 'kingelshrouk (5 blay)',
+spec : {
+durability : 90,
+water : 95,
+default_age : 90,
+},},{
+    id : 'w_mdf1',
+name : 'turkish mdf',
+spec : {
+durability : 60,
+water : 40,
+default_age : 40,
+
+},
+},{
+id : 'w_kingelshrouk2',
+name : 'kingelshrouk (3 blay)',
+spec : {
+durability : 73,
+water : 93,
+default_age : 85,
+
+},
+    
+},{id : 'w_mdf2',
+name : 'egyptian mdf',
+spec : {
+durability : 50,
+water : 30,
+default_age : 30,
+
+},},{
+
+id : 'w_goodwood1',
+name : 'goodwood (5 blay)',
+spec : {
+durability : 95,
+water : 95,
+default_age : 95,
+
+},
+
+
+
+},{
+
+id : 'w_goodwood2',
+name : 'goodwood (3 blay)',
+spec : {
+durability : 80,
+water : 93,
+default_age : 80,
+
+},
+
+}]
+
+
+let mat = [{
+
+
+id : 'g_uvlakyldiz',
+name : 'uvlak yldiz',
+spec : {
+durability : 90,
+water : 80,
+scrath : 60,
+clean : 95,
+},
+},
+{
+id : 'w_hplgreenlam',
+name : 'hpl greenlam (woody)',
+colours_url : ['/euro touch/2026-10-01 hpl woody/4012-sf.jpg'
+,'/euro touch/2026-10-01 hpl woody/8182-sf.jpg'
+,'/euro touch/2026-10-01 hpl woody/8226-sf.jpg'
+,'/euro touch/2026-10-01 hpl woody/8240-sf.jpg'
+,'/euro touch/2026-10-01 hpl woody/8244-sf.jpg'
+,'/euro touch/2026-10-01 hpl woody/8462-sf.jpg'
+,'/euro touch/2026-10-01 hpl woody/8477-sf.jpg'
+,'/euro touch/2026-10-01 hpl woody/8430-sf.jpg'
+]
+,
+spec : {
+durability : 95,
+water : 90,
+scrath : 85,
+clean : 80,
+
+
+},
+},{
+id : 'g_hplgreenlam',
+name : 'hpl greenlam (glossy)',
+colours_url : ['/euro touch/2026-10-01 hpl mt/5004-mf.jpg',
+'/euro touch/2026-10-01 hpl mt/105-sf.jpg',
+'/euro touch/2026-10-01 hpl mt/4001-sf.jpg',
+'/euro touch/2026-10-01 hpl mt/5009-sf.jpg',
+'/euro touch/2026-10-01 hpl mt/5015-sf.jpg',
+'/euro touch/2026-10-01 hpl mt/5054-sf.jpg',
+'/euro touch/2026-10-01 hpl mt/5082-sf.jpg',
+'/euro touch/2026-10-01 hpl mt/5082-sf.jpg',],
+spec : {
+durability : 93,
+water : 90,
+scrath : 58,
+clean : 88,
+
+
+},
+    
+},{
+id : 'mt_hplgreenlam',
+name : 'hpl greenlam (matt)',
+spec : {
+durability : 93,
+water : 85,
+scrath : 70,
+clean : 40,
+
+
+},
+
+},
+{
+id : 'w_hpleurotouchh',
+name : 'hpl eurotouch (woody)',
+spec : {
+durability : 95,
+water : 90,
+scrath : 80,
+clean : 80,
+
+
+},
+},
+{
+id : 'g_hpleurotouch',
+name : 'hpl eurotouch (glossy)',
+spec : {
+durability : 93,
+water : 90,
+scrath : 53,
+clean : 88,
+
+
+},
+    
+},
+{
+id : 'mt_hpleurotouch',
+name : 'hpl eurotouch (matt)',
+spec : {
+durability : 93,
+water : 85,
+scrath : 65,
+clean : 40,
+
+
+},
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+,{
+
+id : 'mt_pvc',
+name : 'pvc',
+spec : {
+durability : 90,
+water : 80,
+scrath : 65,
+clean : 60,
+
+
+},
+
+
+
+}
+,
+{
+id : 'w_Lumberj',
+name : 'Lumberj  (woody)',
+spec : {
+durability : 80,
+water : 80,
+scrath : 80,
+clean : 70,
+
+
+},
+},{
+id : 'g_Lumberj',
+name : 'Lumberj  (glossy)',
+spec : {
+durability : 93,
+water : 95,
+scrath : 85,
+clean : 90,
+
+
+},
+    
+},{
+id : 'mt_Lumberj',
+name : 'Lumberj  (matt)',
+spec : {
+durability : 93,
+water : 88,
+scrath : 70,
+clean : 60,
+
+
+},
+
+}
+
+
+
+
+
+
+
+
+
+
+,{
+
+id : 'g_polylakeurotouch',
+name : 'polylak eurotouch (glossy)',
+spec : {
+durability : 80,
+water : 93,
+scrath : 89,
+clean : 92,
+
+
+},
+
+}]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let woodht = document.getElementById('woodht')
+
+  
+   
+   
+     
+
+
+
+
+for(woodp of wood){
+
+
+woodht.innerHTML += `<option  value="${woodp.id}">${woodp.name   }   </option>`
+
+
+
+
+
+
+}
+
+
+
+
+
+
+// 1. المتغير النصي الذي يحدد الكلمة التي تبحث عنها (مثلاً hpl أو Lumberj)
+// 1. دالة بتاخد المصفوفة وبتطلع منها الأسماء الفريدة ومنظفة تماماً
+function getCleanedMaterials(materialsArray) {
+    
+    // سطر السحر: بنمر على كل عنصر وننظفه، وبنستخدم Set عشان تمنع التكرار تلقائياً
+    let uniqueNames = [...new Set(materialsArray.map(item => {
+        
+        // أ. بنشيل أي مسافات زيادة في الأول أو الآخر
+        let fullName = item.name.trim(); 
+        
+        // ب. بنقطع النص من أول القوس "(" عشان نشيل (woody) أو (glossy)
+        let cleanName = fullName.split('(')[0].trim(); 
+        
+        return cleanName;
+    }))];
+
+    return uniqueNames;
+}
+
+// 2. تشغيل الدالة على المصفوفة بتاعتك (mat)
+let finalResult = getCleanedMaterials(mat);
+
+// 3. طباعة النتيجة في الكونسول
+console.log(finalResult);
+// المخرج هيكون بالظبط: ['uvlak yldiz', 'hpl greenlam', 'hpl eurotouch', 'pvc', 'Lumberj']
+
+ 
+
+for(matp of finalResult){
+
+
+
+
+
+
+matht.innerHTML += `<option  value="${matp}">${matp}   </option>`
+
+
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const wrapper = document.querySelector(".dropdown-wrapper");
+  const trigger = document.querySelector(".dropdown-trigger");
+  const pages = document.querySelectorAll(".material-dropdown-menu .section-page");
+  const dots = document.querySelectorAll(".pagination-container .dot");
+
+  // 1. فتح وإغلاق القائمة المنسدلة عند الضغط على Trigger
+  trigger.addEventListener("click", function (e) {
+    e.stopPropagation();
+    wrapper.classList.toggle("open");
+  });
+
+  // 2. إغلاق القائمة تلقائياً إذا ضغط المستخدم في أي مكان خارجها بالصفحة
+  document.addEventListener("click", function (e) {
+    if (!wrapper.contains(e.target)) {
+      wrapper.classList.remove("open");
+    }
+  });
+
+  // 3. كود التنقل الداخلي بين صفحات الألوان (Pagination)
+  function changePage(pageIndex) {
+    pages.forEach((page, index) => {
+      if (index === pageIndex) {
+        page.style.display = "block";
+        setTimeout(() => {
+          page.classList.add("active-page");
+        }, 10);
+      } else {
+        page.style.display = "none";
+        page.classList.remove("active-page");
+      }
+    });
+
+    dots.forEach((dot, index) => {
+      if (index === pageIndex) {
+        dot.classList.add("active");
+      } else {
+        dot.classList.remove("active");
+      }
+    });
+  }
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", (e) => {
+      e.stopPropagation(); // يمنع إغلاق المودال عند التنقل بين الصفحات
+      changePage(index);
+    });
+  });
+
+  // تفعيل الصفحة الأولى تلقائياً عند البداية
+  changePage(0);
+});
+
+
+
+
+
+
+  const ctxBar = document.getElementById('miniBarChart').getContext('2d');
+
+  new Chart(ctxBar, {
+    type: 'bar',
+    data: {
+      labels: ['durability', 'water', 'scratch', 'clean','defualt age','temp'],
+      datasets: [{
+        data: [100,85, 80 , 70, 24,25],
+        backgroundColor: 'rgb(71 71 255)',
+        hoverBackgroundColor: '#4f46e5',
+        borderRadius: 8, // حواف دائرية ناعمة للأعمدة
+        borderSkipped: false
+
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { enabled: true }
+      },
+      scales: {
+        x: { 
+          grid: { display: false },
+          ticks: {
+            font: { size: 12 },
+            color: '#9ca3af'
+          }
+        },
+        y: { display: false } // إخفاء المحور الرأسي لمنع التزاحم
+      }
+    }
+  });
+
+
+    function adw(){
+
+// let selected = document.getElementById.
+  const wrapper = document.querySelector(".dropdown-wrapper");
+
+switch(matht.value){
+case 'uvlak yldiz': 
+console.log(matht.value);
+break;
+
+case 'hpl greenlam': 
+console.log(wrapper);
+wrapper.style.display = 'inline-block'
+
+
+break;
+
+case 'hpl eurotouch': 
+console.log(matht.value);
+
+
+break;
+case 'pvc': 
+console.log(matht.value);
+break;
+
+case 'Lumberj': 
+console.log(matht.value);
+break;
+
+case 'polylak eurotouch': 
+console.log(matht.value);
+break;
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+function fd(gh,aa,bb){
+    gh.style.backgroundColor ='#35cf35'
+        aa.style.backgroundColor ='#ff0202a8'
+        bb.style.backgroundColor ='#ff0202a8'
+
+                                             
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+function select(dv){
+
+
+
+document.querySelector('.selected-item').style.backgroundImage = dv.style.backgroundImage
+
+document.querySelector('.selected-item').title = dv.title
+
+
+
+}
+
+
+
+
+let maturl = document.querySelector('.selected-item')
+
+
+
+console.log(maturl)
+
+
+
+</script>
+<script src="resistlogic.js"></script>
+<script src="activate_of_slider.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="section">
+<h4 class="section-title">Matt Euro Touch</h4>
+<div class="swatch-grid">
+<div class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl mt/5004-mf.jpg');" title="Wood 1"></div>
+<div class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl mt/105-sf.jpg');" title="Wood 1"></div>
+<div class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl mt/4001-sf.jpg');" title="Wood 1"></div>
+<div class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl mt/5009-sf.jpg');" title="Wood 1"></div>
+<div class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl mt/5015-sf.jpg');" title="Wood 1"></div>
+<div class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl mt/5054-sf.jpg');" title="Wood 1"></div>
+<div class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl mt/5082-sf.jpg');" title="Wood 1"></div>
+<div class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl mt/5082-sf.jpg');" title="Wood 1"></div>
+<div class="swatch-item" style="background-image: url('/euro touch/2026-10-01 hpl mt/5082-sf.jpg');" title="Wood 1"></div>
+
+
+</div>
+</div> -->
+
+
+
+
+
+
+
+
+</body>
+</html>
